@@ -1,0 +1,8 @@
+@startuml
+    [*] --> CategoryTrustChange
+    CategoryTrustChange --> CategoryDareChange
+    CategoryDareChange --> [*]
+
+    [*] --> CategoryAllChange
+    CategoryAllChange --> [*]
+@enduml
