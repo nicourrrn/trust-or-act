@@ -21,7 +21,7 @@ Widget homePage(BuildContext context, WidgetRef ref) {
             const Gap(20),
             ElevatedButton(
               onPressed: () {
-                getIt<MyRouter>().router.go(RoutesName.about.route);
+                getIt<MyRouter>().router.push(RoutesName.about.route);
               },
               child: const Text("Go to About"),
             ),
