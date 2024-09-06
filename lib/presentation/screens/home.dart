@@ -9,23 +9,40 @@ part "home.g.dart";
 
 @hcwidget
 Widget homePage(BuildContext context, WidgetRef ref) {
-  return Scaffold(
+  return SafeArea(
+    child:
+    Scaffold(
       appBar: AppBar(
-        title: const Text("Home"),
+        title: const Text("Truth or dare"),
+                actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.info),
+            tooltip: 'Go to about',
+            onPressed: () {
+              getIt<MyRouter>().router.push(RoutesName.about.route);
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.settings),
+            tooltip: 'Go to settins',
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('This is a settings')));
+            },
+          ),
+        ],
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("Home screen"),
-            const Gap(20),
-            ElevatedButton(
+            OutlinedButton(
               onPressed: () {
                 getIt<MyRouter>().router.push(RoutesName.about.route);
               },
-              child: const Text("Go to About"),
+              child: const Text("Start game"),
             ),
           ],
         ),
-      ));
+      )));
 }
