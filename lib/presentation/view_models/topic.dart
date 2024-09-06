@@ -18,7 +18,9 @@ class QuestionsList extends _$QuestionsList {
   @override
   List<Questions> build() {
     return const [
-      Questions("Progs", ["1", "2", "3"], true)
+      Questions("Progs", ["1", "2", "3"], true),
+      Questions("How to suck", ["1", "2", "3"], true),
+      Questions("How to suck", ["1", "2", "3"], true),
     ];
   }
 
