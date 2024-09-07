@@ -25,6 +25,7 @@ class MyRouter {
       path: RoutesName.about.route,
       builder: (context, state) => const AboutPage(),
     ),
+    
   ], initialLocation: RoutesName.home.route);
 
   GoRouter get router => _router;
