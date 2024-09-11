@@ -14,6 +14,14 @@ Widget topikChoosePage(BuildContext context, WidgetRef ref) {
   return Scaffold(
       appBar: AppBar(
         title: const Text("Choose Topics"),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.check),
+            onPressed: () {
+              getIt<MyRouter>().router.push(RoutesName.userCreating.route);
+            },
+          )
+        ],
       ),
       body: Center(
         child: FutureBuilder(

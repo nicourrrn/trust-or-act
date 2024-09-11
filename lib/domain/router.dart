@@ -4,10 +4,12 @@ import "package:injectable/injectable.dart";
 import "../presentation/screens/home.dart";
 import "../presentation/screens/about.dart";
 import "../presentation/screens/topik_choose.dart";
+import "../presentation/screens/user_creating.dart";
 
 enum RoutesName {
   home,
   topicChoose,
+  userCreating,
   profile,
   settings,
   about,
@@ -30,6 +32,9 @@ class MyRouter {
     GoRoute(
         path: RoutesName.topicChoose.route,
         builder: (context, state) => const TopikChoosePage()),
+    GoRoute(
+        path: RoutesName.userCreating.route,
+        builder: (context, state) => const UserCreating()),
   ], initialLocation: RoutesName.home.route);
 
   GoRouter get router => _router;

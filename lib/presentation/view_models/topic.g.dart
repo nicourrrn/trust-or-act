@@ -24,7 +24,7 @@ Map<String, dynamic> _$$QuestionsImplToJson(_$QuestionsImpl instance) =>
 // RiverpodGenerator
 // **************************************************************************
 
-String _$questionsListHash() => r'e2545708f166e1dadef4dd8ff53874d1c4168282';
+String _$questionsListHash() => r'fa040979f9b785511fc2cf77440d8ccbf5e2c1de';
 
 /// See also [QuestionsList].
 @ProviderFor(QuestionsList)
