@@ -10,22 +10,42 @@ part "topik_choose.g.dart";
 
 @hcwidget
 Widget topikChoosePage(BuildContext context, WidgetRef ref) {
-  final topics = ref.watch(questionsListProvider);
-
+  final choosedTopics = ref.watch(questionsListProvider);
   return Scaffold(
       appBar: AppBar(
         title: const Text("Choose Topics"),
       ),
       body: Center(
-        child: ListView.builder(
-          itemCount: topics.length,
-          itemBuilder: (BuildContext context, int index) {
-            return ListTile(
-              title: Text(topics[index].title),
-              onTap: () {
-                print("you tapped on ${topics[index].title}");
-              },
-            );
+        child: FutureBuilder(
+          future: loadQuestions(),
+          initialData: const [],
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTile(
+                    title: Text(snapshot.data[index].title),
+                    leading: Checkbox.adaptive(
+                        onChanged: (value) {},
+                        value: choosedTopics.contains(snapshot.data[index])),
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content:
+                              Text("You choose ${snapshot.data[index].title}"),
+                        ),
+                      );
+                      ref
+                          .read(questionsListProvider.notifier)
+                          .selectOne(snapshot.data[index]);
+                    },
+                  );
+                },
+              );
+            } else {
+              return const CircularProgressIndicator();
+            }
           },
         ),
       ));
