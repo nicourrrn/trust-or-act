@@ -3,7 +3,6 @@ import "package:functional_widget_annotation/functional_widget_annotation.dart";
 import "package:flutter/material.dart";
 import "package:truth_or_dare/di/config.dart";
 import "package:truth_or_dare/domain/router.dart";
-import "package:gap/gap.dart";
 
 part "home.g.dart";
 
