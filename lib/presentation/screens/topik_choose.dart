@@ -37,15 +37,18 @@ Widget topikChoosePage(BuildContext context, WidgetRef ref) {
                         onChanged: (value) {},
                         value: choosedTopics.contains(snapshot.data[index])),
                     onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content:
-                              Text("You choose ${snapshot.data[index].title}"),
-                        ),
-                      );
-                      ref
+                      var questionIndex = ref
                           .read(questionsListProvider.notifier)
                           .selectOne(snapshot.data[index]);
+                      var randomQuestion = ref
+                          .read(questionsListProvider.notifier)
+                          .selectQuestion(questionIndex);
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("Question example: $randomQuestion"),
+                        ),
+                      );
                     },
                   );
                 },

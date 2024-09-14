@@ -2,6 +2,7 @@ import "package:riverpod_annotation/riverpod_annotation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
 import "package:flutter/services.dart" show rootBundle;
 import 'dart:convert' show jsonDecode;
+import "dart:math" show Random;
 
 part "topic.g.dart";
 part "topic.freezed.dart";
@@ -26,10 +27,19 @@ class QuestionsList extends _$QuestionsList {
     state = [...state, ...questions];
   }
 
-  void selectOne(Questions question) {
+  int selectOne(Questions question) {
     state = state.contains(question)
         ? state.where((element) => element != question).toList()
         : [...state, question];
+    return state.length - 1;
+  }
+
+  String selectQuestion([int questionIndex = -1]) {
+    if (questionIndex == 0) {
+      questionIndex = Random().nextInt(state.length);
+    }
+    var randomQuestion = Random().nextInt(state[questionIndex].text.length);
+    return state[questionIndex].text[randomQuestion];
   }
 }
 
