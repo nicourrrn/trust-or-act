@@ -1,0 +1,23 @@
+@startuml
+
+    class QuestionList {
+        + List<Question> init();
+
+        + List<Question> get();
+        + void addList(List<Question> questions);
+    }
+    
+    
+    interface Adapter {
+        + List<Question> makeQuestion();
+    }
+
+    class QuestionFromJson {
+        + void init(String json);
+        + List<Question> makeQuestion();
+    }
+
+    Adapter <|-- QuestionFromJson
+    
+
+@enduml
