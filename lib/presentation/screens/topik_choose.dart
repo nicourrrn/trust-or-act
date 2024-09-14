@@ -4,7 +4,6 @@ import "package:flutter/material.dart";
 import "package:truth_or_dare/di/config.dart";
 import "package:truth_or_dare/domain/router.dart";
 import "package:truth_or_dare/presentation/view_models/topic.dart";
-import "package:gap/gap.dart";
 
 part "topik_choose.g.dart";
 
