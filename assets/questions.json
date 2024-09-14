@@ -1,0 +1,17 @@
+[
+  {
+    "title": "What is the capital of France?",
+    "text": ["1", "2", "3"],
+    "isTruth": false
+  },
+  {
+    "title": "What is the capital of Ukraine?",
+    "text": ["1", "2", "3"],
+    "isTruth": true
+  },
+  {
+    "title": "What is the capital of Germany?",
+    "text": ["1", "2", "3"],
+    "isTruth": false
+  }
+]
