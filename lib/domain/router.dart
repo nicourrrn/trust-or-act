@@ -5,11 +5,13 @@ import "../presentation/screens/home.dart";
 import "../presentation/screens/about.dart";
 import "../presentation/screens/topik_choose.dart";
 import "../presentation/screens/user_creating.dart";
+import "../presentation/screens/topic_creating.dart";
 
 enum RoutesName {
   home,
   topicChoose,
   userCreating,
+  topicCreating,
   profile,
   settings,
   about,
@@ -35,6 +37,9 @@ class MyRouter {
     GoRoute(
         path: RoutesName.userCreating.route,
         builder: (context, state) => const UserCreating()),
+    GoRoute(
+        path: RoutesName.topicCreating.route,
+        builder: (context, state) => const TopicCreatingPage()),
   ], initialLocation: RoutesName.home.route);
 
   GoRouter get router => _router;

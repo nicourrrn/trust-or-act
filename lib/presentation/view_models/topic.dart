@@ -1,7 +1,9 @@
 import "package:riverpod_annotation/riverpod_annotation.dart";
 import "package:freezed_annotation/freezed_annotation.dart";
+import "package:path_provider/path_provider.dart";
+import "dart:io";
 import "package:flutter/services.dart" show rootBundle;
-import 'dart:convert' show jsonDecode;
+import 'dart:convert' show jsonDecode, jsonEncode;
 import "dart:math" show Random;
 
 part "topic.g.dart";
@@ -44,17 +46,30 @@ class QuestionsList extends _$QuestionsList {
 }
 
 Future<List<Questions>> loadQuestions() async {
-  print("Hello from load Questions");
   var questions = await loadQuestionsFromStorage();
-  print("questions: $questions");
+  questions.addAll((await loadUserQuestions()));
   return questions;
 }
 
 Future<List<Questions>> loadQuestionsFromStorage() async {
   String assetsData = await rootBundle.loadString("assets/questions.json");
-  print(assetsData);
   final data = jsonDecode(assetsData)
       as Iterable; // If use List<Map<String, dynamic>> run loop
-  print("data: $data");
   return data.map((e) => Questions.fromJson(e)).toList();
+}
+
+Future<List<Questions>> loadUserQuestions() async {
+  final Directory appDocumentDir = await getApplicationDocumentsDirectory();
+  final File file = File("${appDocumentDir.path}/questions.json");
+  if (await file.exists()) {
+    final data = jsonDecode(file.readAsStringSync()) as Iterable;
+    return data.map((e) => Questions.fromJson(e)).toList();
+  }
+  return [];
+}
+
+saveUserQuestions(List<Questions> questions) async {
+  final Directory appDocumentDir = await getApplicationDocumentsDirectory();
+  File("${appDocumentDir.path}/questions.json")
+      .writeAsString(jsonEncode(questions));
 }

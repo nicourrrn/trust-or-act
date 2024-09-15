@@ -15,6 +15,11 @@ Widget topikChoosePage(BuildContext context, WidgetRef ref) {
         title: const Text("Choose Topics"),
         actions: [
           IconButton(
+              icon: const Icon(Icons.add),
+              onPressed: () {
+                getIt<MyRouter>().router.push(RoutesName.topicCreating.route);
+              }),
+          IconButton(
             icon: const Icon(Icons.check),
             onPressed: () {
               getIt<MyRouter>().router.push(RoutesName.userCreating.route);
